@@ -12,7 +12,7 @@ const Header = ({ user, setUser }) => {
 
   return (
     <header style={{ padding: '10px', background: '#333', color: 'white', display: 'flex', justifyContent: 'space-between' }}>
-      <h1>News App</h1>
+      <h1>THE MIC</h1>
       <nav>
         <Link to="/" style={{ color: 'white', marginRight: '10px' }}>Home</Link>
         {user ? (

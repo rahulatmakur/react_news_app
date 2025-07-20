@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const NewsForm = ({ user }) => {
+const NewsForm = ({ user, onPostSuccess }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isBreaking, setIsBreaking] = useState(false);
@@ -17,7 +17,10 @@ const NewsForm = ({ user }) => {
       setTitle('');
       setContent('');
       setIsBreaking(false);
-      window.location.reload();
+      alert('News posted successfully!');
+      if (onPostSuccess) {
+        onPostSuccess();
+      }
     } catch (err) {
       console.error(err);
       alert('Failed to post news. Please try again.');

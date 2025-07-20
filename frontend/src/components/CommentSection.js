@@ -5,10 +5,14 @@ const CommentSection = ({ newsId, user }) => {
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
 
-  useEffect(() => {
+  const fetchComments = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/comments/${newsId}`)
       .then(res => setComments(res.data))
       .catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    fetchComments();
   }, [newsId]);
 
   const handleSubmit = async (e) => {
@@ -20,7 +24,8 @@ const CommentSection = ({ newsId, user }) => {
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       setContent('');
-      window.location.reload();
+     
+      fetchComments();
     } catch (err) {
       console.error(err);
       alert('Failed to post comment. Please try again.');
